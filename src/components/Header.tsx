@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 const Header = () => {
   return (
     <>
-      <div className="bg-black h-18 flex items-center justify-center px-4">
+      <div className="bg-testcolor h-16 flex items-center justify-center px-4">
         <SearchBar></SearchBar>
       </div>
     </>

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Header from "../components/Header";
+import TestBrand from "../components/TestBrand";
 
 export default function Home() {
   return (
     <>
-      <h1>Wumbo</h1>
+      <TestBrand></TestBrand>
     </>
   );
 }
