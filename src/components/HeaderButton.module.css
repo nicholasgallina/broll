@@ -1,0 +1,9 @@
+.headerButton {
+  transition: filter 0.2s ease, box-shadow 0.2s ease; /* smooth hover */
+}
+
+.headerButton:hover {
+  filter: drop-shadow(0 0 10px white); /* white glow */
+  /* OR use box-shadow if you prefer */
+  /* box-shadow: 0 0 10px 2px white; */
+}
