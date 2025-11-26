@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  --color-nebula: #5e205a;
+  --color-troubleshoot: #d40404;
+  --color-header: #3f34d1;
+}
+
+ol{
+  color: white;
 }

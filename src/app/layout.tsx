@@ -1,5 +1,6 @@
+import "./globals.css"; //this is the entry point for tailwind
+
 import type { Metadata } from "next";
-import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-linear-to-b from-cyan-600 to-gray flex flex-col min-h-screen">
+      <body className="bg-radial from-nebula to-black flex flex-col min-h-screen">
         <Header />
 
         <main className="grow">{children}</main>
