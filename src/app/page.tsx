@@ -21,9 +21,12 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center">
-        <div className="flex gap-80">
-          <LoginForm />
+      <div className="w-screen h-screen flex items-center justify-center ">
+        <div className="flex gap-40">
+          <div className="-translate-y-12 transform">
+            <LoginForm />
+          </div>
+
           <GlobalRankings />
         </div>
       </div>

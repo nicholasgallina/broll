@@ -1,29 +1,52 @@
-import Link from "next/link";
-import HomeButtonImg from "../app/assets/home-icon.png";
-import AccountButtonImg from "../apps/assets/account-icon.png";
-import styles from "./HeaderButton.module.css";
+"use client";
+
+import { useRouter } from "next/navigation";
+import React from "react";
 
 interface HeaderButtonProps {
-  link?: string;
-  image?: any;
-  width?: number;
-  height?: number;
+  children: React.ReactNode;
+  ignoreLogic?: boolean;
+  userType?: string;
+  destinationRules?: Record<string, string>;
 }
 
-export default function HeaderButton({
-  link = "/account",
-  image = HomeButtonImg,
-  width = 75,
-  height = 60,
-}: HeaderButtonProps) {
+const HeaderButton: React.FC<HeaderButtonProps> = ({
+  children,
+  ignoreLogic = false,
+  userType,
+  destinationRules,
+}) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    console.log("button clicked", {
+      userType,
+      destinationRules,
+      hasDefault: destinationRules?.hasOwnProperty("default"),
+      route: destinationRules?.[userType ?? "default"],
+    });
+
+    if (ignoreLogic) {
+      console.log("click ignored because ignoreLogic is true");
+      return;
+    }
+
+    const route = destinationRules?.[userType ?? "default"];
+    console.log("navigating to:", route);
+
+    if (route) router.push(route);
+    else console.log("no route found to navigate");
+  };
+
   return (
-    <Link href={link}>
-      <img
-        src={image}
-        alt="Fix this"
-        style={{ width: width, height: height }}
-        className={styles.headerButton}
-      />
-    </Link>
+    <button
+      type="button"
+      onClick={handleClick}
+      className="cursor-pointer transition-filter duration-200 ease-in-out hover:drop-shadow-[0_0_10px_white]"
+    >
+      {children}
+    </button>
   );
-}
+};
+
+export default HeaderButton;
