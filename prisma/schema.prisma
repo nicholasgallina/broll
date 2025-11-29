@@ -1,0 +1,32 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    username  String   @unique
+    email     String   @unique
+    password  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relations for friends
+    friendships Friendship[] @relation("UserFriendships")
+    friendOf    Friendship[] @relation("FriendOfFriendships")
+}
+
+model Friendship {
+    id       Int @id @default(autoincrement())
+    userId   Int
+    friendId Int
+
+    user   User @relation("UserFriendships", fields: [userId], references: [id])
+    friend User @relation("FriendOfFriendships", fields: [friendId], references: [id])
+
+    @@unique([userId, friendId])
+}
